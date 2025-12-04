@@ -8,6 +8,7 @@ public class LoginPage extends PageObject {
     private By usernameField = By.id("user-name");
     private By passwordField = By.id("password");
     private By loginButton = By.id("login-button");
+    private By errorMessage = By.cssSelector("h3[data-test='error']");
 
 
     public void openPage(){
@@ -26,4 +27,7 @@ public class LoginPage extends PageObject {
         $(loginButton).click();
     }
 
+    public String getErrorMessage(){
+        return $(errorMessage).getText();
+    }
 }

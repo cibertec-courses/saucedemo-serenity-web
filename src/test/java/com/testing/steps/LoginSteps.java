@@ -46,4 +46,10 @@ public class LoginSteps {
         assertTrue(productsPage.isDisplayed());
     }
 
+    @Then("debe ver el mensaje de error {string}")
+    public void debeVerElMensajeDeError(String mensajeEsperado){
+        String mensajeActual = loginPage.getErrorMessage();
+        assertTrue(mensajeActual.contains(mensajeEsperado) || mensajeActual.equals(mensajeEsperado));
+    }
+
 }
