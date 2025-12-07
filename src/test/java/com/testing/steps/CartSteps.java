@@ -1,6 +1,7 @@
 package com.testing.steps;
 
 import com.testing.pages.CartPage;
+import com.testing.pages.CheckoutPage;
 import com.testing.pages.LoginPage;
 import com.testing.pages.ProductsPage;
 import io.cucumber.java.en.*;
@@ -18,6 +19,7 @@ public class CartSteps {
     LoginPage loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
+    CheckoutPage checkoutPage;
 
     @Given("el usuario ha iniciado sesion con las credenciales validas")
     public void elUsuarioHaIniciadoSesionConLasCredencialesValidad(){
@@ -45,6 +47,26 @@ public class CartSteps {
     @Then("debe ver el producto agregado en el carrito")
     public  void debeVerElProductoAgregadoEnelCarrito(){
         assertTrue(cartPage.hasProducts());
+    }
+
+    @When("procede al checkout")
+    public void procedeAlCheckout(){
+        checkoutPage.clickCheckout();
+    }
+
+    @When("completa el formulario con nombre {string} apellido {string} y codigo postal {string}")
+    public void completaElFormulario(String nombre, String apellido, String codigoPostal){
+        checkoutPage.fillForm(nombre, apellido, codigoPostal);
+    }
+
+    @When("finaliza la compra")
+    public void finalizaLaCompra(){
+        checkoutPage.finishCheckout();
+    }
+
+    @Then("debe ver el mensaje de confirmacion {string}")
+    public void debeVerElMensajeDeConfirmacion(String mensaje){
+        assertEquals(mensaje, checkoutPage.getConfirmationMessage());
     }
 
 
