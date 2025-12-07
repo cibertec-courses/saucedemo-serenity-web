@@ -30,4 +30,8 @@ public class LoginPage extends PageObject {
     public String getErrorMessage(){
         return $(errorMessage).getText();
     }
+
+    public boolean isDisplayed() {
+        return find(loginButton).isDisplayed();
+    }
 }

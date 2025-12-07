@@ -1,9 +1,6 @@
 package com.testing.steps;
 
-import com.testing.pages.CartPage;
-import com.testing.pages.CheckoutPage;
-import com.testing.pages.LoginPage;
-import com.testing.pages.ProductsPage;
+import com.testing.pages.*;
 import io.cucumber.java.en.*;
 
 import net.serenitybdd.annotations.Managed;
@@ -20,6 +17,7 @@ public class CartSteps {
     ProductsPage productsPage;
     CartPage cartPage;
     CheckoutPage checkoutPage;
+    MenuPage menuPage;
 
     @Given("el usuario ha iniciado sesion con las credenciales validas")
     public void elUsuarioHaIniciadoSesionConLasCredencialesValidad(){
@@ -69,5 +67,19 @@ public class CartSteps {
         assertEquals(mensaje, checkoutPage.getConfirmationMessage());
     }
 
+    @When("abre el menu lateral")
+    public void abreElMenuLateral(){
+        menuPage.openMenu();
+    }
+
+    @When("hace click en logout")
+    public void haceClickEnLogout(){
+        menuPage.clickLogout();
+    }
+
+    @Then("debe ver la pagina de login")
+    public void debeVerLaPaginaDeLogin(){
+        assertTrue(loginPage.isDisplayed());
+    }
 
 }
