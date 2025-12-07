@@ -11,6 +11,7 @@ public class ProductsPage extends PageObject {
     private By cartBadge = By.cssSelector(".shopping_cart_badge");
 
 
+
     public boolean isDisplayed() {
         return $(productsTitle).isDisplayed();
     }
@@ -29,4 +30,6 @@ public class ProductsPage extends PageObject {
         );
         return  Integer.parseInt(find(cartBadge).getText());
     }
+
+
 }

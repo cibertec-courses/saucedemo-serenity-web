@@ -1,5 +1,6 @@
 package com.testing.steps;
 
+import com.testing.pages.CartPage;
 import com.testing.pages.LoginPage;
 import com.testing.pages.ProductsPage;
 import io.cucumber.java.en.*;
@@ -16,6 +17,7 @@ public class CartSteps {
 
     LoginPage loginPage;
     ProductsPage productsPage;
+    CartPage cartPage;
 
     @Given("el usuario ha iniciado sesion con las credenciales validas")
     public void elUsuarioHaIniciadoSesionConLasCredencialesValidad(){
@@ -34,4 +36,16 @@ public class CartSteps {
     public void elContadorDelCarritoDebeMostrar(int cantidad){
         assertEquals(cantidad, productsPage.getCartCount());
     }
+
+    @When("accede al carrito")
+    public void  accedeAlCarrito(){
+        cartPage.openCart();
+    }
+
+    @Then("debe ver el producto agregado en el carrito")
+    public  void debeVerElProductoAgregadoEnelCarrito(){
+        assertTrue(cartPage.hasProducts());
+    }
+
+
 }
